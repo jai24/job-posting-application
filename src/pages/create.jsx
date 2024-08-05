@@ -1,6 +1,8 @@
-import { useState } from "react"
-import { CreateJob } from "../services/job"
-const Skills = [
+import { useEffect, useState } from "react"
+import { CreateJob, getJobs } from "../services/job"
+import { useParams } from "react-router-dom"
+import toast from "react-hot-toast";
+export const Skills = [
     {
         value: 'React',
         label: 'React'
@@ -32,6 +34,7 @@ const Skills = [
     }
 ]
 export default function Create() {
+    const {id} = useParams();
     const{loading,setLoading} =useState(flase)
     const [formData, setFormData] = useState({
         companyName: null,
@@ -66,8 +69,13 @@ export default function Create() {
         const data={...formData};
         data.skills = data.skills.join(',');
         try{
-            const response = await CreateJob({data});
+            const jobid = id? id:null;
+            const response = await CreateJob({data,id:jobid});
             console.log(response);
+            if(response.status === 201){
+                jobid ? toast.success('Job updated sucessfully'): toast.success("Job created sucessfully");
+                setFormData(response.data);
+            }
         }
         catch(error){
             console.log(error.message)
@@ -76,6 +84,17 @@ export default function Create() {
             setLoading(false)
         }
     }
+    useEffect(()=>{
+        const fetchJob = async()=>{
+            const response = await getJobs({id});
+            if(response.status===200){
+                setFormData(response.data)
+            }
+        }
+        if(id){
+            fetchJob();
+        }
+    },[])
     return (<>
         <div>
             <h1>Create</h1>
@@ -104,13 +123,13 @@ export default function Create() {
                     multiple
                 >
                     {Skills.map((skill, idx) => (
-                        <option key={idx} value={skill.value}>
+                        <option selected={formData.skills.includes(skill.value)} key={idx} value={skill.value}>
                             {skill.label}
                         </option>
                     ))}
                 </select>
                 <input onChange={handleChange} type="text" value={formData.information} name="information" placeholder="Information" />
-                    <button disabled={loading} type="submit">Submit</button>
+                    {id ? <button disabled={loading} type="submit">Update</button>:<button disabled={loading} type="submit">Submit</button>}
             </form>
         </div>
 
