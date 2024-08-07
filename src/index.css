@@ -1,14 +1,108 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+header{
+  display: flex;
+  justify-content: space-between;
+  background-color: thistle;
+  width: 100%;
+  height: 13vh;
+}
+.sitename{
+ font-weight: 670;
+ color: #EF4765;
+ padding: 20px;
+ margin-left: 30px;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.header-button{
+  margin: 23px 50px 0 0;
+}
+
+
+.button-login, .button-register{
+  background: linear-gradient(to bottom right, #EF4765, #FF9A5A);
+  border: 0;
+  border-radius: 12px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  margin-right: 30px;
+} 
+
+.button-login:not([disabled]):focus {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.button-login:not([disabled]):hover {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+.button-register:not([disabled]):focus {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.button-register:not([disabled]):hover {
+  box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.searchJob{
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  height: 27vh;
+  width: 50vw;
+/* left: 28%;
+  margin-top: 20px; */
+  margin: 20px auto;
+}
+
+.searchTab{
+  width: 80%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  color:  #9C9C9C;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('./assets/searchicon.png.png');
+  /* background-position: 10px 10px;  */
+  background-repeat: no-repeat;
+  background-size: 40px;
+  padding: 12px 20px 12px 40px;
+  margin: 20px 0 0 45px;
+}
+
+.select{
+  margin: 20px 45px;
+  height: 30px;
+  width: 70px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.applyfilter{
+  margin-left: 260px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+  background-color: #EF4765;
+  cursor: pointer;
 }

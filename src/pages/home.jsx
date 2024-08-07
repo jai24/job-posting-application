@@ -5,6 +5,7 @@ import { verifyToken } from "../utils/auth";
 import { deleteJob } from "../services/job";
 import toast from "react-hot-toast";
 import { Skills } from "./create";
+import { login } from "../services/auth";
 
 function Home() {
     const [jobs, setJobs] = useState([]);
@@ -71,9 +72,17 @@ function Home() {
     }
     return (
         <div>
-            <h1>Home</h1>
-            <input type="text" placeholder="Search" value={search} onChange={handleSearch} />
-            <select name="" id="">
+            <header>
+            <h1 className="sitename">Thedal.com</h1>
+            <div className="header-button">
+            <button className="button-login" onClick={()=> navigate('./login')}>Login</button>
+            <button className="button-register" onClick={()=> navigate('./register')}>Register</button>
+            </div>
+            </header>
+            <div className="searchJob">
+            <input className="searchTab" type="text" placeholder="Type any job title here" value={search} onChange={handleSearch} />
+           <br />
+            <select className="select" name="" id="">
                 {Skills.map((skill) => {
                     return <option onClick={() => handleSkillChange(skill.value)} key={skill} value={skill.value}>{skill.label}</option>
                 })}
@@ -81,7 +90,9 @@ function Home() {
             {skills && skills.map((skill)=>{
                 return <span style={{marginRight: '10px'}} key={skill}>{skill}</span>
             })}
-            <button disabled={skills === null} onClick={()=> fetchJobs({skills})}>Apply filters</button>
+            
+            <button className="applyfilter" disabled={skills === null} onClick={()=> fetchJobs({skills})}>Apply filters</button>
+            </div>
             {loading ? <h1>Loading...</h1> : filteredJobs.map((job) => {
                 return (
                     <div key={job._id}>
